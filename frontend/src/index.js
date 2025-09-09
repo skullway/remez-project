@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { firebaseConfig } from "./firebaseConfig";
+import { createMultipleStats } from "./utils/apiCalls";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,6 +23,14 @@ getDocs(colRef).then(snapshot => {
 })
 .catch(err => {
   console.log(err.message);
-})
+});
+
+
+if (import.meta.env.IS_PUSH_FAKE_DATA) {
+  const fakeStatsData = {
+    docs: []
+  };
+  createMultipleStats(fakeStatsData);
+}
 
 const analytics = getAnalytics(app);

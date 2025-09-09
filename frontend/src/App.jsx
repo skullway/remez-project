@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Write from './components/Write'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Chart from './components/chart';
 
 function App() {
 
@@ -7,15 +7,14 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Write />} />
-          <Route path="/write" element={<Write />} />
+          <Route path="/" element={<Chart />} />
+          <Route path="/write" />
         </Routes>
       </Router>
       <div>
-        <h1>Hello World</h1>
       </div>
     </>
   )
 }
 
-export default App
+export default App;
