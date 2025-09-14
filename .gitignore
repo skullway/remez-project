@@ -1,2 +1,7 @@
 # Environment files
 .env
+
+# Local files
+apphosting.emulator.yaml
+firestore-debug.log
+pubsub-debug.log
