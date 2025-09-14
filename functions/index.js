@@ -7,8 +7,8 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-const {setGlobalOptions} = require("firebase-functions");
-const {onRequest} = require("firebase-functions/https");
+const { setGlobalOptions } = require("firebase-functions");
+const { onRequest } = require("firebase-functions/https");
 const logger = require("firebase-functions/logger");
 const express = require("express");
 const cors = require("cors");
@@ -37,7 +37,7 @@ setGlobalOptions({ maxInstances: 10 });
 // https://firebase.google.com/docs/functions/get-started
 
 exports.helloWorld = onRequest((req, res) => {
-  logger.info("Hello logs!", {structuredData: true});
+  logger.info("Hello logs!", { structuredData: true });
   res.send("Hello from Firebase!");
 });
 
@@ -72,21 +72,20 @@ app.post("/trafficStat", async (req, res) => {
 
 // POST /trafficStats - create multiple new stats
 app.post("/trafficStats", async (req, res) => {
-    try {
-      const payload = req.body || {};
-      const allStats = [];
-      
-      for (const stat of payload.docs) {
-        const created = await trafficStatsCol.add(stat);
-        allStats.push({ id: created.id, ...stat });
-      }
-      res.status(201).json({ allStats });
-    } catch (error) {
-      logger.error("POST /trafficStats failed", error);
-      res.status(500).json({ error: "Internal Server Error" });
+  try {
+    const payload = req.body || {};
+    const allStats = [];
+
+    for (const stat of payload.docs) {
+      const created = await trafficStatsCol.add(stat);
+      allStats.push({ id: created.id, ...stat });
     }
-  });
-  
+    res.status(201).json({ allStats });
+  } catch (error) {
+    logger.error("POST /trafficStats failed", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 // PUT /trafficStats/:id - update existing stat
 app.put("/trafficStats/:id", async (req, res) => {
@@ -117,17 +116,17 @@ app.delete("/trafficStats/:id", async (req, res) => {
 app.delete("/trafficStats", async (req, res) => {
   try {
     const { ids } = req.body; // array of document IDs
-    
+
     if (!ids || !Array.isArray(ids)) {
       return res.status(400).json({ error: "ids array is required" });
     }
-    
+
     const batch = db.batch();
-    ids.forEach(id => {
+    ids.forEach((id) => {
       const docRef = trafficStatsCol.doc(id);
       batch.delete(docRef);
     });
-    
+
     await batch.commit();
     res.status(200).json({ deleted: ids.length, ids });
   } catch (error) {

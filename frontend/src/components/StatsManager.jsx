@@ -90,7 +90,7 @@ const StatsManager = ({ stats, onAdd, onEdit, onDelete }) => {
                                 id="date"
                                 value={date}
                                 onChange={(e) => setDate(e.target.value)}
-                                className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
+                                className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition [&::-webkit-calendar-picker-indicator]:invert"
                                 required
                                 disabled={!!editingStat || isSubmitting}
                             />

@@ -5,3 +5,4 @@
 apphosting.emulator.yaml
 firestore-debug.log
 pubsub-debug.log
+.firebase

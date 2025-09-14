@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
-import { fetchStats } from '../utils/apiCalls'; // Your actual API call
 
 // The tooltip is updated to show "Visits" and format the number
 const CustomTooltip = ({ active, payload, label }) => {

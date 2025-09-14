@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { fetchStats, createStat, updateStat, deleteStat } from "../utils/apiCalls";
+import { useAuth } from "../contexts/AuthContext";
 import Chart from "./Chart";
 import StatsManager from "./StatsManager";
 
 const Dashboard = () => {
+    const { logout } = useAuth();
     const [stats, setStats] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -11,9 +13,12 @@ const Dashboard = () => {
     useEffect(() => {
         const getData = async () => {
             try {
+                console.log('Fetching stats...');
                 const fetchedData = await fetchStats();
+                console.log('Fetched data:', fetchedData);
                 setStats(fetchedData);
             } catch (err) {
+                console.error('Error fetching data:', err);
                 setError("Failed to fetch initial data. Please try refreshing the page.");
             } finally {
                 setLoading(false);
@@ -47,7 +52,15 @@ const Dashboard = () => {
     return (
         <div className="bg-gray-900 text-gray-100 p-4 sm:p-8 font-sans flex justify-center min-h-screen">
             <main className="w-full max-w-5xl">
-                <h1 className="text-4xl font-bold text-white mb-8 text-center">Analytics Dashboard</h1>
+                <div className="flex justify-between items-center mb-8">
+                    <h1 className="text-4xl font-bold text-white">Analytics Dashboard</h1>
+                    <button
+                        onClick={logout}
+                        className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                    >
+                        Logout
+                    </button>
+                </div>
                 <Chart rawStats={stats} />
                 <StatsManager
                     stats={stats}
