@@ -13,9 +13,7 @@ const Dashboard = () => {
     useEffect(() => {
         const getData = async () => {
             try {
-                console.log('Fetching stats...');
                 const fetchedData = await fetchStats();
-                console.log('Fetched data:', fetchedData);
                 setStats(fetchedData);
             } catch (err) {
                 console.error('Error fetching data:', err);
@@ -46,8 +44,8 @@ const Dashboard = () => {
         setStats(prevStats => prevStats.filter(stat => stat.id !== id));
     };
 
-    if (loading) return <div className="text-center text-white p-10">Loading Dashboard...</div>;
-    if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
+    if (loading) return <div className="text-center text-blue-800 text-2xl p-10">Loading Dashboard...</div>;
+    if (error) return <div className="text-center text-red-500 text-2xl p-10">{error}</div>;
 
     return (
         <div className="bg-gray-900 text-gray-100 p-4 sm:p-8 font-sans flex justify-center min-h-screen">
