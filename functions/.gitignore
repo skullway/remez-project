@@ -1,3 +1,9 @@
-node_modules/
+# Firebase loggers
+*.log
+
+# Local Files
 *.local
 firebase-export-*
+
+# Modules
+node_modules/
