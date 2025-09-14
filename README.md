@@ -5,7 +5,7 @@ The Remez 24 analytics project supplies statistics for the choring system of our
 ## Deployment
 
 1. Use the package manager [npm](https://www.npmjs.com/) to install the node modules.
-* note that for the root directory, /frontend and /functions, you need to use `npm i` individually.
+* note that on /frontend and /functions, you need to use `npm i` individually.
 ```bash
 npm install
 ```
