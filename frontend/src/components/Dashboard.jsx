@@ -9,6 +9,7 @@ const Dashboard = () => {
     const [stats, setStats] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isSideBySide, setIsSideBySide] = useState(false);
 
     useEffect(() => {
         const getData = async () => {
@@ -44,14 +45,28 @@ const Dashboard = () => {
         setStats(prevStats => prevStats.filter(stat => stat.id !== id));
     };
 
+    const toggleLayout = () => {
+        setIsSideBySide(!isSideBySide);
+    };
+
     if (loading) return <div className="text-center text-blue-800 text-2xl p-10">Loading Dashboard...</div>;
     if (error) return <div className="text-center text-red-500 text-2xl p-10">{error}</div>;
 
+    const mainWidthClass = isSideBySide ? "w-full" : "max-w-5xl";
+    const layoutClasses = isSideBySide ? "flex-col lg:flex-row flex-nowrap" : "flex-col";
+
     return (
         <div className="bg-gray-900 text-gray-100 p-4 sm:p-8 font-sans flex justify-center min-h-screen">
-            <main className="w-full max-w-5xl">
-                <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-4xl font-bold text-white">Analytics Dashboard</h1>
+            <main className={`w-full ${mainWidthClass} mx-auto`}>
+            <div className="flex justify-between items-center mb-4">
+                <h1 className="text-4xl font-bold text-white">Analytics Dashboard</h1>
+                <div className="flex items-center space-x-4">
+                    <button
+                        onClick={toggleLayout}
+                        className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors"
+                    >
+                        {isSideBySide ? 'View Above/Below' : 'View Side-by-Side'}
+                    </button>
                     <button
                         onClick={logout}
                         className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
@@ -59,13 +74,20 @@ const Dashboard = () => {
                         Logout
                     </button>
                 </div>
-                <Chart rawStats={stats} />
-                <StatsManager
-                    stats={stats}
-                    onAdd={handleAddStat}
-                    onEdit={handleEditStat}
-                    onDelete={handleDeleteStat}
-                />
+            </div>
+                <div className={`flex ${layoutClasses} items-stretch gap-8`}>
+                    <div className="flex-1">
+                        <Chart rawStats={stats} />
+                    </div>
+                    <div className="flex-1">
+                        <StatsManager
+                            stats={stats}
+                            onAdd={handleAddStat}
+                            onEdit={handleEditStat}
+                            onDelete={handleDeleteStat}
+                        />
+                    </div>
+                </div>
             </main>
         </div>
     );
