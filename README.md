@@ -28,27 +28,3 @@ firebase deploy --only "functions,frontend"
 `VITE_DEV=false`
 4. from ./frontend run the frontend using `npm run dev` and from ./functions run the backend using `npm run serve`
 5. Preferably, you can add a variable named `VITE_IS_PUSH_FAKE_DATA` and set it to true for entering a load of fake data or a variable named `VITE_IS_CLEAN_COLLECTION` to clean your collection (both can be customised in `/frontend/index.js`)
-
-## License
-
-MIT License
-
-Copyright (c) [2025] [skullway]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
